@@ -6,6 +6,8 @@ namespace Chavdar_Todorov_employees.Services;
 
 public class EmployeeProjectService : IEmployeeProjectService
 {
+    private readonly string[] _dateFormats = { "yyyy-MM-dd", "dd-MM-yyyy", "dd-MMM-yyyy", "dd-MMM-yy h:mm:ss tt" };
+    
     public List<EmployeeProject> ReadEmployeeProjects(string filePath)
     {
         var employeeProjects = new List<EmployeeProject>();
@@ -17,8 +19,8 @@ public class EmployeeProjectService : IEmployeeProjectService
 
             var employeeId = int.Parse(columns[0]);
             var projectId = int.Parse(columns[1]);
-            var dateFrom = DateTime.Parse(columns[2], CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
-            var dateTo = columns[3] == "NULL" ? (DateTime?)null : DateTime.Parse(columns[3], CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
+            var dateFrom = ParseDate(columns[2]);
+            var dateTo = columns[3] == "NULL" ? (DateTime?)null : ParseDate(columns[3]);
 
             employeeProjects.Add(new EmployeeProject
             {
@@ -79,5 +81,15 @@ public class EmployeeProjectService : IEmployeeProjectService
         var end = end1 < end2 ? end1 : end2;
 
         return start < end ? (end - start).Value.Days : 0;
+    }
+    
+    private DateTime ParseDate(string dateString)
+    {
+        if (DateTime.TryParseExact(dateString, _dateFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result))
+        {
+            return result;
+        }
+
+        throw new FormatException($"Unable to parse date: {dateString}");
     }
 }

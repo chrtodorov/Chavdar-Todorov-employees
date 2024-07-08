@@ -14,7 +14,7 @@ public class UploadRecordService : IUploadRecordService
         foreach (var employee in employees)
         {
             
-            streamWriter.WriteLine($"{employee.EmployeeId},{employee.ProjectId},{employee.DateFrom.HasValue},{(employee.DateTo.HasValue ? employee.DateTo : "NULL")}");
+            streamWriter.WriteLine($"{employee.EmployeeId},{employee.ProjectId},{(employee.DateFrom.HasValue ? employee.DateFrom : "NULL")},{(employee.DateTo.HasValue ? employee.DateTo : "NULL")}");
         }
     }
 }

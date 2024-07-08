@@ -24,6 +24,6 @@ public class CustomDateTimeConverter : JsonConverter<DateTime>
 
     public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
     {
-        writer.WriteStringValue(value.ToString("yyyy-MM-dd")); // Serialize DateTime as "yyyy-MM-dd"
+        writer.WriteStringValue(value.ToString("yyyy-MM-dd"));
     }
 }

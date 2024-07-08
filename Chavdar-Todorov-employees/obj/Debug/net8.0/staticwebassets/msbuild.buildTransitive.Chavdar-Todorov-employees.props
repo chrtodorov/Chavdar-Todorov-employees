@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Chavdar-Todorov-employees.props" />
+</Project>

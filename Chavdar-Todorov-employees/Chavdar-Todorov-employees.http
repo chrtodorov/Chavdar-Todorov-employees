@@ -1,0 +1,6 @@
+@Chavdar_Todorov_employees_HostAddress = http://localhost:5070
+
+GET {{Chavdar_Todorov_employees_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

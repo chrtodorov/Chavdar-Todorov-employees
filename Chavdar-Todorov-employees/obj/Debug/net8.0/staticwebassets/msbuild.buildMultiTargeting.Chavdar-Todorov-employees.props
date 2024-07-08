@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Chavdar-Todorov-employees.props" />
+</Project>
